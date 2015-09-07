@@ -2,7 +2,7 @@ package com.booking.dao;
 
 
 import com.booking.model.hotel.Admin;
-import com.sun.istack.internal.Nullable;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -62,7 +62,6 @@ public class AdminDaoImpl implements AdminDao {
         }
     }
 
-    @Nullable
     public Admin find(String login) {
         if (login == null || login.equals("")) {
             throw new IllegalArgumentException("Login shouldn't be empty");
@@ -88,7 +87,6 @@ public class AdminDaoImpl implements AdminDao {
         return admin;
     }
 
-    @Nullable
     public Admin find(long id) {
         /*if (id <= 0) {
             throw new IllegalArgumentException("Id can not be less than zero");

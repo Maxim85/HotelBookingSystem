@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="com.booking.database:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="com.booking.database-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="com.booking.database:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -2,7 +2,6 @@ package com.booking.dao;
 
 import com.booking.model.hotel.Apartment;
 import com.booking.model.hotel.Type;
-import com.sun.istack.internal.Nullable;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -113,7 +112,6 @@ public class ApartmentDaoImpl implements ApartmentDao {
     }
 
     //todo : refactor all
-    @Nullable
     public Apartment find(String name) {
         if (name == null || name.equals("")) {
             throw new IllegalArgumentException("Name shouldn't be empty");

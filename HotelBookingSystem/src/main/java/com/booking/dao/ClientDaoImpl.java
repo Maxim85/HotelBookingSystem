@@ -18,10 +18,10 @@ public class ClientDaoImpl implements ClientDao {
     private static Logger logger = Logger.getLogger(ClientDaoImpl.class.getName());
 
     public void add(Client client) {
-        if(client.getPassword()==null||client.getPassword().equals("")){
+        if (client.getPassword() == null || client.getPassword().equals("")) {
             throw new IllegalArgumentException("Enter correct password. Password shouldn't be empty");
         }
-        if(client.getLogin()==null||client.getLogin().equals("")){
+        if (client.getLogin() == null || client.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
         String query = "INSERT INTO user (id, login, password) VALUES (?, ?, ?)";
@@ -39,10 +39,10 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     public void update(Client client) {
-        if(client.getPassword()==null||client.getPassword().equals("")){
+        if (client.getPassword() == null || client.getPassword().equals("")) {
             throw new IllegalArgumentException("Enter correct password. Password shouldn't be empty");
         }
-        if(client.getLogin()==null||client.getLogin().equals("")){
+        if (client.getLogin() == null || client.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
         String query = "UPDATE user SET login = ?, password = ? Where id = ?";
@@ -106,7 +106,7 @@ public class ClientDaoImpl implements ClientDao {
                 client.setPassword(password);
                 logger.info("Method of finding the client by id successfully completed.");
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             logger.log(Level.ERROR, "Exception in method find client by id: ", e);
         }
         return client;
@@ -126,10 +126,10 @@ public class ClientDaoImpl implements ClientDao {
             logger.log(Level.ERROR, "Exception in method delete the client by id: ", e);
         }
     }
-    public void deleteAll ()
-    {
+
+    public void deleteAll() {
         String query = "DELETE FROM user";
-        try (Connection connection = ConnectionFactory.createConnection()){
+        try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.execute();
             logger.info("Method of deleting all client successfully completed.");
@@ -139,7 +139,7 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     public ArrayList<Client> getAll() {
-        ArrayList<Client>list = new ArrayList<>();
+        ArrayList<Client> list = new ArrayList<>();
         String query = "SELECT * FROM USER;";
         try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -154,8 +154,8 @@ public class ClientDaoImpl implements ClientDao {
                 client.setPassword(password);
                 list.add(client);
             }
-            logger.info("Method of obtaining all data of client successfully completed.\n"+
-                    "There is "+list.size()+" client in database");
+            logger.info("Method of obtaining all data of client successfully completed.\n" +
+                    "There is " + list.size() + " client in database");
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Exception in method get all client: ", e);
         }

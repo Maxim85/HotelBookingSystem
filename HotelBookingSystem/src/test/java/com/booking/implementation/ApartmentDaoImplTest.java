@@ -23,11 +23,11 @@ public class ApartmentDaoImplTest {
     public static final int FIRST_TEST_DATA_ID = 1;
     public static final String FIRST_TEST_DATA_TYPE = "LUX_1";
     public static final boolean TEST_DATA_AVAILABLE = true;
-    public static final String FIRST_TEST_DATA_DATE = "2015-08-25";
+    public static final String FIRST_TEST_DATA_DATE = "2015-09-25";
 
     public static final int SECOND_TEST_DATA_ID = 2;
     public static final String SECOND_TEST_DATA_TYPE = "LUX_2";
-    public static final String SECOND_TEST_DATA_DATE = "2015-08-30";
+    public static final String SECOND_TEST_DATA_DATE = "2015-09-30";
     
     public static final int THIRD_TEST_DATA_ID = 3;
     public static final String THIRD_TEST_DATA_TYPE = "LUX_3";

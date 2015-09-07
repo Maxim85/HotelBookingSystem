@@ -21,13 +21,13 @@ import static org.junit.Assert.assertEquals;
 public class BidDaoImplTest {
     public static final int FIRSST_TEST_DATA_ID = 50;
     public static final short FIRST_DATA_TEST_TERM = 7;
-    public static final String FIRST_DATA_TEST_DATE = "2015-08-25";
+    public static final String FIRST_DATA_TEST_DATE = "2015-09-25";
 
     public static final int SECOND_DATA_TEST_ID = 100;
     public static final short SECOND_DATA_TEST_TERM = 14;
-    public static final String SECOND_DATA_TEST_DATE = "2015-08-30";
+    public static final String SECOND_DATA_TEST_DATE = "2015-09-30";
 
-    public static final String DATA_TEST_VALID_DATE = "2015-09-25";
+    public static final String DATA_TEST_VALID_DATE = "2015-10-25";
     public static final String DATA_TEST_INVALID_DATE = "2015-08-05";
     public static final int TEST_DATA_INVALID_ID = -1;
     public static final short TEST_DATE_INVALID_TERM = 0;

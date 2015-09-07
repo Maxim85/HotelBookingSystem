@@ -1,6 +1,8 @@
 package com.booking.dao;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -15,14 +17,16 @@ public class ConnectionFactory {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
+
     public static Connection createConnection() {
+        Logger logger = Logger.getLogger(ConnectionFactory.class.getName());
         Connection connection = null;
         try {
             Driver driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Connection error ", e);
         }
         return connection;
     }
