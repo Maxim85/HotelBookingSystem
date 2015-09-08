@@ -33,8 +33,7 @@ public class Controller extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         try {
 //определение команды, пришедшей из JSP

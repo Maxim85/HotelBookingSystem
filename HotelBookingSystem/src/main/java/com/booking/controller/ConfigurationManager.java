@@ -9,8 +9,8 @@ import java.util.ResourceBundle;
 public class ConfigurationManager {
     private static ConfigurationManager instance;
     private ResourceBundle resourceBundle;
-    //класс извлекает информацию из файла config.properties
-    private static final String BUNDLE_NAME = "src/main/resources/config.properties";
+    //РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р° config.properties
+    private static final String BUNDLE_NAME = "config";
     public static final String DATABASE_DRIVER_NAME = "DATABASE_DRIVER_NAME";
     public static final String DATABASE_URL = "DATABASE_URL";
     public static final String ERROR_PAGE_PATH = "ERROR_PAGE_PATH";

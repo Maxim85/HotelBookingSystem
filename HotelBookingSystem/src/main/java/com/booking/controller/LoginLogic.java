@@ -25,7 +25,7 @@ public class LoginLogic {
                 cn = DriverManager.getConnection(url);
                 PreparedStatement st = null;
                 try {
-                    st = cn.prepareStatement("SELECT * FROM USERS WHERE LOGIN = ? AND PASSWORD = ?");
+                    st = cn.prepareStatement("SELECT * FROM USER WHERE LOGIN = ? AND PASSWORD = ?");
                     st.setString(1, login);
                     st.setString(2, password);
                     ResultSet rs = null;
