@@ -16,6 +16,7 @@ public class RequestHelper {
     private RequestHelper() {
 //заполнение таблицы командами
         commands.put("login", new LoginCommand());
+        commands.put("registration", new RegistrationCommand());
     }
     public Command getCommand(HttpServletRequest request) {
 //извлечение команды из запроса

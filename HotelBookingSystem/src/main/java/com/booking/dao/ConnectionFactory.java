@@ -22,10 +22,13 @@ public class ConnectionFactory {
         Logger logger = Logger.getLogger(ConnectionFactory.class.getName());
         Connection connection = null;
         try {
-            Driver driver = new FabricMySQLDriver();
-            DriverManager.registerDriver(driver);
+            /*Driver driver = new FabricMySQLDriver();
+            DriverManager.registerDriver(driver);*/
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
+            logger.error("Connection error ", e);
+        } catch (ClassNotFoundException e) {
             logger.error("Connection error ", e);
         }
         return connection;

@@ -4,6 +4,7 @@ import com.booking.dao.ClientDaoImpl;
 import com.booking.model.hotel.Client;
 import org.junit.*;
 
+import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,13 +18,19 @@ public class ClientDaoImplTest {
 
     public static final String EXPECTED_LOGIN = "Katya";
     public static final String EXPECTED_PASSWORD = "tyuio";
+    public static final String EXPECTED_NAME = "Katerina";
+    public static final String EXPECTED_MAIL = "Kat@i.ua";
     public static final String FIRST_TEST_DATA_LOGIN = "Vasiliy";
     public static final String FIRST_TEST_DATA_PASSWORD = "erety";
+    public static final String FIRST_TEST_DATA_NAME = "Vasil";
+    public static final String FIRST_TEST_DATA_MAIL = "Vasil85@i.ua";
     public static final int FIRST_TEST_DATA_ID = 1;
     public static final String BLANC = "";
     public static final int INVALID_ID = -100;
     public static final String SECOND_TEST_DATA_LOGIN = "Roma";
     public static final String SECOND_TEST_DATA_PASSWORD = "22qwere";
+    public static final String SECOND_TEST_DATA_NAME = "Roman";
+    public static final String SECOND_TEST_DATA_MAIL = "Rom@i.ua";
     public static final int SECOND_TEST_DATA_ID = 2;
 
     static ArrayList<Client> originalList = new ArrayList<>();
@@ -62,11 +69,15 @@ public class ClientDaoImplTest {
         firstTestAdmin.setId(FIRST_TEST_DATA_ID);
         firstTestAdmin.setLogin(FIRST_TEST_DATA_LOGIN);
         firstTestAdmin.setPassword(FIRST_TEST_DATA_PASSWORD);
+        firstTestAdmin.setName(FIRST_TEST_DATA_NAME);
+        firstTestAdmin.setMail(FIRST_TEST_DATA_MAIL);
 
         Client secondTestAdmin = new Client();
         secondTestAdmin.setId(SECOND_TEST_DATA_ID);
         secondTestAdmin.setLogin(SECOND_TEST_DATA_LOGIN);
         secondTestAdmin.setPassword(SECOND_TEST_DATA_PASSWORD);
+        secondTestAdmin.setName(SECOND_TEST_DATA_NAME);
+        secondTestAdmin.setMail(SECOND_TEST_DATA_MAIL);
 
         return Arrays.asList(firstTestAdmin, secondTestAdmin);
     }
@@ -80,6 +91,8 @@ public class ClientDaoImplTest {
         Assert.assertEquals(FIRST_TEST_DATA_LOGIN, client.getLogin());
         Assert.assertEquals(FIRST_TEST_DATA_PASSWORD, client.getPassword());
         Assert.assertEquals(FIRST_TEST_DATA_ID, client.getId());
+        Assert.assertEquals(FIRST_TEST_DATA_NAME, client.getName());
+        Assert.assertEquals(FIRST_TEST_DATA_MAIL, client.getMail());
     }
 
 
@@ -98,6 +111,8 @@ public class ClientDaoImplTest {
         Assert.assertEquals(FIRST_TEST_DATA_LOGIN, client.getLogin());
         Assert.assertEquals(FIRST_TEST_DATA_PASSWORD, client.getPassword());
         Assert.assertEquals(FIRST_TEST_DATA_ID, client.getId());
+        Assert.assertEquals(FIRST_TEST_DATA_NAME, client.getName());
+        Assert.assertEquals(FIRST_TEST_DATA_MAIL, client.getMail());
     }
 
     @Test
@@ -123,12 +138,16 @@ public class ClientDaoImplTest {
         client.setId(FIRST_TEST_DATA_ID);
         client.setLogin(EXPECTED_LOGIN);
         client.setPassword(EXPECTED_PASSWORD);
+        client.setName(EXPECTED_NAME);
+        client.setMail(EXPECTED_MAIL);
         dao.update(client);
 
         //2. assertion
         Assert.assertEquals(FIRST_TEST_DATA_ID, client.getId());
         Assert.assertEquals(EXPECTED_LOGIN, client.getLogin());
         Assert.assertEquals(EXPECTED_PASSWORD, client.getPassword());
+        Assert.assertEquals(EXPECTED_NAME, client.getName());
+        Assert.assertEquals(EXPECTED_MAIL, client.getMail());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -138,6 +157,8 @@ public class ClientDaoImplTest {
         client.setId(-FIRST_TEST_DATA_ID);
         client.setLogin(BLANC);
         client.setPassword(BLANC);
+        client.setName(BLANC);
+        client.setMail(BLANC);
         dao.update(client);
     }
 
@@ -148,12 +169,16 @@ public class ClientDaoImplTest {
         client.setId(3);
         client.setLogin(EXPECTED_LOGIN);
         client.setPassword(EXPECTED_PASSWORD);
+        client.setName(EXPECTED_NAME);
+        client.setMail(EXPECTED_MAIL);
         dao.add(client);
 
         //2. assertion
         Assert.assertEquals(3, client.getId());
         Assert.assertEquals(EXPECTED_LOGIN, client.getLogin());
         Assert.assertEquals(EXPECTED_PASSWORD, client.getPassword());
+        Assert.assertEquals(EXPECTED_NAME, client.getName());
+        Assert.assertEquals(EXPECTED_MAIL, client.getMail());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -162,6 +187,8 @@ public class ClientDaoImplTest {
         Client client = new Client();
         client.setLogin(BLANC);
         client.setPassword(BLANC);
+        client.setName(BLANC);
+        client.setMail(BLANC);
         dao.add(client);
     }
 
@@ -171,7 +198,7 @@ public class ClientDaoImplTest {
         dao.delete(FIRST_TEST_DATA_ID);
 
         //2. assertion
-        assertEquals(dao.getAll().size(), FIRST_TEST_DATA_ID);
+        assertEquals(dao.getAll().size(), 1);
     }
 
     @Test(expected = IllegalArgumentException.class)

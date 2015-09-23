@@ -27,10 +27,10 @@ public interface AdminDao {
     /**
      * Get administrator by name
      *
-     * @param name
+     * @param login
      * @return
      */
-    Admin find(String name);
+    Admin find(String login);
 
     /**
      * Get administrator by id

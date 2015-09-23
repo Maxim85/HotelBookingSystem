@@ -16,7 +16,7 @@ public class LoginLogic {
     public static boolean checkLogin(String login, String password) {
         // проверка логина и пароля
         try {
-//организация простейшего соединения с базой данных
+        //организация простейшего соединения с базой данных
             String driver = ConfigurationManager.getInstance().getProperty(ConfigurationManager.DATABASE_DRIVER_NAME);
             Class.forName(driver);
             Connection cn = null;
@@ -31,8 +31,8 @@ public class LoginLogic {
                     ResultSet rs = null;
                     try {
                         rs = st.executeQuery();
-/* проверка, существует ли пользователь
-с указанным логином и паролем */
+        /* проверка, существует ли пользователь
+        с указанным логином и паролем */
                         return rs.next();
                     } finally {
                         if (rs != null)

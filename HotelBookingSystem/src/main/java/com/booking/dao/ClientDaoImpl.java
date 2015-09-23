@@ -24,15 +24,18 @@ public class ClientDaoImpl implements ClientDao {
         if (client.getLogin() == null || client.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
-        String query = "INSERT INTO user (id, login, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO user (id, login, password, name, mail) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, client.getId());
             statement.setString(2, client.getLogin());
             statement.setString(3, client.getPassword());
+            statement.setString(4, client.getName());
+            statement.setString(5, client.getMail());
             statement.execute();
             logger.info("Method add a new client successful done.\n" +
-                    "It created a new client. Login of new client set: " + client.getLogin() + "\nPassword of new client set: " + client.getPassword());
+                    "It created a new client. Login of new client set: " + client.getLogin() + "\nPassword of new client set: " + client.getPassword()+
+            "\nName of new client set: "+client.getName()+"\nE-mail of new client set: "+client.getMail());
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Exception in method add a new client: ", e);
         }
@@ -45,16 +48,19 @@ public class ClientDaoImpl implements ClientDao {
         if (client.getLogin() == null || client.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
-        String query = "UPDATE user SET login = ?, password = ? Where id = ?";
+        String query = "UPDATE user SET login = ?, password = ?, name = ?, mail=? Where id = ?";
         try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, client.getLogin());
             statement.setString(2, client.getPassword());
-            statement.setLong(3, client.getId());
+            statement.setString(3, client.getName());
+            statement.setString(4, client.getMail());
+            statement.setLong(5, client.getId());
             statement.executeUpdate();
             //todo: write correct messages
             logger.info("Method update the client successful done.\n" +
-                    "Login set: " + client.getLogin() + "\nPassword set: " + client.getPassword());
+                    "Login set: " + client.getLogin() + "\nPassword set: " + client.getPassword()+
+            "\nName set: "+client.getName()+"\nE-mail set: "+client.getMail());
         } catch (SQLException e) {
             logger.error("Exception in method update the client: ", e);
         }
@@ -74,9 +80,13 @@ public class ClientDaoImpl implements ClientDao {
                 Long id = resultSet.getLong(1);
                 String loginFromDB = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 client.setId(id);
                 client.setLogin(loginFromDB);
                 client.setPassword(password);
+                client.setName(name);
+                client.setMail(mail);
                 logger.info("Method of finding the client by name successfully completed.");
             }
         } catch (SQLException e) {
@@ -101,9 +111,13 @@ public class ClientDaoImpl implements ClientDao {
                 long idFromDB = resultSet.getLong(1);
                 String login = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 client.setId(idFromDB);
                 client.setLogin(login);
                 client.setPassword(password);
+                client.setName(name);
+                client.setMail(mail);
                 logger.info("Method of finding the client by id successfully completed.");
             }
         } catch (SQLException e) {
@@ -147,11 +161,15 @@ public class ClientDaoImpl implements ClientDao {
             while (resultSet.next()) {
                 Client client = new Client();
                 long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
+                String login = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 client.setId(id);
-                client.setLogin(name);
+                client.setLogin(login);
                 client.setPassword(password);
+                client.setName(name);
+                client.setMail(mail);
                 list.add(client);
             }
             logger.info("Method of obtaining all data of client successfully completed.\n" +

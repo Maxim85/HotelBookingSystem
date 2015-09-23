@@ -8,6 +8,16 @@ public class User {
     private long id;
     private String login;
     private String password;
+    private String mail;
+    private String name;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public long getId() {
         return id;
@@ -31,5 +41,13 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

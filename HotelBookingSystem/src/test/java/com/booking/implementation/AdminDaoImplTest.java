@@ -18,13 +18,19 @@ public class AdminDaoImplTest {
 
     public static final String EXPECTED_LOGIN = "Katya";
     public static final String EXPECTED_PASSWORD = "tyuio";
+    public static final String EXPECTED_NAME = "Katerina";
+    public static final String EXPECTED_MAIL = "Kat@i.ua";
     public static final String FIRST_TEST_DATA_LOGIN = "Vasiliy";
     public static final String FIRST_TEST_DATA_PASSWORD = "erety";
+    public static final String FIRST_TEST_DATA_NAME = "Vasil";
+    public static final String FIRST_TEST_DATA_MAIL = "Vasil85@i.ua";
     public static final int FIRST_TEST_DATA_ID = 1;
     public static final String BLANC = "";
     public static final int INVALID_ID = -100;
     public static final String SECOND_TEST_DATA_LOGIN = "Roma";
     public static final String SECOND_TEST_DATA_PASSWORD = "22qwere";
+    public static final String SECOND_TEST_DATA_NAME = "Roman";
+    public static final String SECOND_TEST_DATA_MAIL = "Rom@i.ua";
     public static final int SECOND_TEST_DATA_ID = 2;
 
     static ArrayList<Admin> originalList = new ArrayList<>();
@@ -63,11 +69,15 @@ public class AdminDaoImplTest {
         firstTestAdmin.setId(FIRST_TEST_DATA_ID);
         firstTestAdmin.setLogin(FIRST_TEST_DATA_LOGIN);
         firstTestAdmin.setPassword(FIRST_TEST_DATA_PASSWORD);
+        firstTestAdmin.setName(FIRST_TEST_DATA_NAME);
+        firstTestAdmin.setMail(FIRST_TEST_DATA_MAIL);
 
         Admin secondTestAdmin = new Admin();
         secondTestAdmin.setId(SECOND_TEST_DATA_ID);
         secondTestAdmin.setLogin(SECOND_TEST_DATA_LOGIN);
         secondTestAdmin.setPassword(SECOND_TEST_DATA_PASSWORD);
+        secondTestAdmin.setName(SECOND_TEST_DATA_NAME);
+        secondTestAdmin.setMail(SECOND_TEST_DATA_MAIL);
 
         return Arrays.asList(firstTestAdmin, secondTestAdmin);
     }
@@ -81,6 +91,8 @@ public class AdminDaoImplTest {
         Assert.assertEquals(FIRST_TEST_DATA_LOGIN, admin.getLogin());
         Assert.assertEquals(FIRST_TEST_DATA_PASSWORD, admin.getPassword());
         Assert.assertEquals(FIRST_TEST_DATA_ID, admin.getId());
+        Assert.assertEquals(FIRST_TEST_DATA_NAME, admin.getName());
+        Assert.assertEquals(FIRST_TEST_DATA_MAIL, admin.getMail());
     }
 
 
@@ -99,6 +111,8 @@ public class AdminDaoImplTest {
         Assert.assertEquals(FIRST_TEST_DATA_LOGIN, admin.getLogin());
         Assert.assertEquals(FIRST_TEST_DATA_PASSWORD, admin.getPassword());
         Assert.assertEquals(FIRST_TEST_DATA_ID, admin.getId());
+        Assert.assertEquals(FIRST_TEST_DATA_NAME, admin.getName());
+        Assert.assertEquals(FIRST_TEST_DATA_MAIL, admin.getMail());
     }
 
     @Test
@@ -124,12 +138,16 @@ public class AdminDaoImplTest {
         admin.setId(FIRST_TEST_DATA_ID);
         admin.setLogin(EXPECTED_LOGIN);
         admin.setPassword(EXPECTED_PASSWORD);
+        admin.setName(EXPECTED_NAME);
+        admin.setMail(EXPECTED_MAIL);
         dao.update(admin);
 
         //2. assertion
         Assert.assertEquals(FIRST_TEST_DATA_ID, admin.getId());
         Assert.assertEquals(EXPECTED_LOGIN, admin.getLogin());
         Assert.assertEquals(EXPECTED_PASSWORD, admin.getPassword());
+        Assert.assertEquals(EXPECTED_NAME, admin.getName());
+        Assert.assertEquals(EXPECTED_MAIL, admin.getMail());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -139,6 +157,8 @@ public class AdminDaoImplTest {
         admin.setId(-FIRST_TEST_DATA_ID);
         admin.setLogin(BLANC);
         admin.setPassword(BLANC);
+        admin.setName(BLANC);
+        admin.setMail(BLANC);
         dao.update(admin);
     }
 
@@ -149,12 +169,16 @@ public class AdminDaoImplTest {
         admin.setId(3);
         admin.setLogin(EXPECTED_LOGIN);
         admin.setPassword(EXPECTED_PASSWORD);
+        admin.setName(EXPECTED_NAME);
+        admin.setMail(EXPECTED_MAIL);
         dao.add(admin);
 
         //2. assertion
         Assert.assertEquals(3, admin.getId());
         Assert.assertEquals(EXPECTED_LOGIN, admin.getLogin());
         Assert.assertEquals(EXPECTED_PASSWORD, admin.getPassword());
+        Assert.assertEquals(EXPECTED_NAME, admin.getName());
+        Assert.assertEquals(EXPECTED_MAIL, admin.getMail());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -163,6 +187,8 @@ public class AdminDaoImplTest {
         Admin admin = new Admin();
         admin.setLogin(BLANC);
         admin.setPassword(BLANC);
+        admin.setName(BLANC);
+        admin.setMail(BLANC);
         dao.add(admin);
     }
 
@@ -172,7 +198,7 @@ public class AdminDaoImplTest {
         dao.delete(FIRST_TEST_DATA_ID);
 
         //2. assertion
-        assertEquals(dao.getAll().size(), FIRST_TEST_DATA_ID);
+        assertEquals(dao.getAll().size(), 1);
     }
 
     @Test(expected = IllegalArgumentException.class)

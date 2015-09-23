@@ -26,10 +26,10 @@ public interface ClientDao {
     /**
      * Get client by name
      *
-     * @param name
+     * @param login
      * @return
      */
-    Client find(String name);
+    Client find(String login);
 
     /**
      * Get client by id

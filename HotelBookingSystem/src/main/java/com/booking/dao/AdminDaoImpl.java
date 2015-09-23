@@ -26,15 +26,18 @@ public class AdminDaoImpl implements AdminDao {
         if (admin.getLogin() == null || admin.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
-        String query = "INSERT INTO user (id, login, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO user (id, login, password, name, mail) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, admin.getId());
             statement.setString(2, admin.getLogin());
             statement.setString(3, admin.getPassword());
+            statement.setString(4, admin.getName());
+            statement.setString(5, admin.getMail());
             statement.execute();
             logger.info("Method add a new admin successful done.\n" +
-                    "It created a new admin. Login of new admin set: " + admin.getLogin() + "\nPassword of new admin set: " + admin.getPassword());
+                    "It created a new admin. Login of new admin set: " + admin.getLogin() + "\nPassword of new admin set: " + admin.getPassword()+
+                    "\nName of new admin set: "+admin.getName() +"\nE-mail of new admin set: "+admin.getMail());
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Exception in method add a new admin: ", e);
         }
@@ -47,16 +50,19 @@ public class AdminDaoImpl implements AdminDao {
         if (admin.getLogin() == null || admin.getLogin().equals("")) {
             throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
-        String query = "UPDATE user SET login = ?, password = ? Where id = ?";
+        String query = "UPDATE user SET login = ?, password = ?, name = ?, mail = ?  Where id = ?";
         try (Connection connection = ConnectionFactory.createConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, admin.getLogin());
             statement.setString(2, admin.getPassword());
-            statement.setLong(3, admin.getId());
+            statement.setString(3, admin.getName());
+            statement.setString(4, admin.getMail());
+            statement.setLong(5, admin.getId());
             statement.executeUpdate();
             //todo: write correct messages
             logger.info("Method update admin successful done.\n" +
-                    "Login set: " + admin.getLogin() + "\nPassword set: " + admin.getPassword());
+                    "Login set: " + admin.getLogin() + "\nPassword set: " + admin.getPassword()+
+                    "\nName set: "+admin.getName()+"\nE-mail set: "+admin.getMail());
         } catch (SQLException e) {
             logger.error("Exception in method update the admin: ", e);
         }
@@ -76,9 +82,13 @@ public class AdminDaoImpl implements AdminDao {
                 Long id = resultSet.getLong(1);
                 String loginFromDB = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 admin.setId(id);
                 admin.setLogin(loginFromDB);
                 admin.setPassword(password);
+                admin.setName(name);
+                admin.setMail(mail);
                 logger.info("Method of finding the administrator by name successfully completed.");
             }
         } catch (SQLException e) {
@@ -103,9 +113,13 @@ public class AdminDaoImpl implements AdminDao {
                 long idFromDB = resultSet.getLong(1);//idFromDB
                 String login = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 admin.setId(idFromDB);
                 admin.setLogin(login);
                 admin.setPassword(password);
+                admin.setName(name);
+                admin.setMail(mail);
                 logger.info("Method of finding the administrator by id successfully completed.");
             }
         } catch (SQLException e) {
@@ -149,11 +163,15 @@ public class AdminDaoImpl implements AdminDao {
             while (resultSet.next()) {
                 Admin admin = new Admin();
                 long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
+                String login = resultSet.getString(2);
                 String password = resultSet.getString(3);
+                String name = resultSet.getString(4);
+                String mail = resultSet.getString(5);
                 admin.setId(id);
-                admin.setLogin(name);
+                admin.setLogin(login);
                 admin.setPassword(password);
+                admin.setName(name);
+                admin.setMail(mail);
                 list.add(admin);
             }
             logger.info("Method of obtaining all data of administrators successfully completed.\n" +
