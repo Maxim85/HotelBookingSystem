@@ -13,7 +13,7 @@
   <H1>Registration Form</H1>
 </head>
 <body>
-<form method="POST" action="controller">
+<form method="POST" action="/app">
   <table>
     <tr>
       <input type="hidden" name="command" value="registration"/>

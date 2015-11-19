@@ -4,6 +4,14 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Project</display-name>
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>com.booking.filter.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/app</url-pattern>
+    </filter-mapping>
     <servlet>
         <description>
         </description>
@@ -13,9 +21,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
-        <url-pattern>/</url-pattern>
+        <!--change to hotel-->
+        <url-pattern>/app</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>mainPage.jsp</welcome-file>
+        <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
