@@ -1,7 +1,8 @@
-package com.booking.controller;
+package com.booking.command;
 
+import com.booking.service.ConfigurationManager;
 import com.booking.dao.AdminDaoImpl;
-import com.booking.model.hotel.Admin;
+import com.booking.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -1,6 +1,6 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Bid;
+import com.booking.model.Bid;
 
 import java.util.ArrayList;
 

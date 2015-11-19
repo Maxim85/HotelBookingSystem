@@ -1,9 +1,8 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Client;
+import com.booking.model.Client;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Maksym.

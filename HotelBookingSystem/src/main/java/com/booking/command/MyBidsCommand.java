@@ -1,4 +1,7 @@
-package com.booking.controller;
+package com.booking.command;
+
+import com.booking.service.ConfigurationManager;
+import com.booking.model.Client;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +16,13 @@ public class MyBidsCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page;
+        String page = null;
         HttpSession session = request.getSession();
-        session.invalidate();
-        return page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.LOGIN_PAGE_PATH);
+        Client clientOriginal = (Client) session.getAttribute("user");
+        if (clientOriginal == null) {
+            page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.CLOSE_PAGE_PATH);
+            session.invalidate();
+        }
+        return page;
     }
 }

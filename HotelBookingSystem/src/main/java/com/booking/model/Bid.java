@@ -1,4 +1,4 @@
-package com.booking.model.hotel;
+package com.booking.model;
 
 import java.util.Date;
 
@@ -10,6 +10,25 @@ public class Bid {
     private Date arrival;
     private short term;
     private long id;
+    private Type type;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Type getType() {
+
+        return type;
+    }
 
     public long getId() {
         return id;

@@ -1,4 +1,4 @@
-package com.booking.model.hotel;
+package com.booking.model;
 
 import java.util.Date;
 
@@ -9,9 +9,7 @@ import java.util.Date;
 public class Apartment {
 
     private long id;
-
     private Type type;
-
     private boolean available;
     private Date checkOutDate;
 

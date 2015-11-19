@@ -1,9 +1,6 @@
-package com.booking.controller;
+package com.booking.service;
 
 import java.util.ResourceBundle;
-
-//package by.bsu.famcs.jspservlet.manager;
-
 
 /**
  * @author Maksym.
@@ -11,7 +8,7 @@ import java.util.ResourceBundle;
 public class MessageManager {
     private static MessageManager instance;
     private ResourceBundle resourceBundle;
-    //класс извлекает информацию из файла messages. properties
+
     private static final String BUNDLE_NAME = "messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
     public static final String SERVLET_EXCEPTION_ERROR_MESSAGE = "SERVLET_EXCEPTION_ERROR_MESSAGE";

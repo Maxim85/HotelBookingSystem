@@ -1,6 +1,6 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Bill;
+import com.booking.model.*;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,32 @@ public interface BillDao {
     Bill find(long id);
 
     /**
+     * Get bill from DB by bid
      *
+     * @param bid
+     * @return
+     */
+    Bill find(Bid bid);
+
+    /**
+     * Get bill from DB by apartment
+     *
+     * @param apartment
+     * @return
+     */
+    Bill find(Apartment apartment);
+
+    /**
+     * Get bill from DB by user
+     *
+     * @param user
+     * @return
+     */
+    Bill find(User user);
+
+    /**
+     *Get all bill from DB
+     * @return ArrayList
      */
     ArrayList<Bill> getAll();
 }

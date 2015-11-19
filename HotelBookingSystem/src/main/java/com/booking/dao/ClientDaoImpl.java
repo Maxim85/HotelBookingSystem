@@ -1,6 +1,6 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Client;
+import com.booking.model.Client;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Maksym.
@@ -68,7 +67,7 @@ public class ClientDaoImpl implements ClientDao {
 
     public Client find(String login) {
         if (login == null || login.equals("")) {
-            throw new IllegalArgumentException("Login shouldn't be empty");
+            throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
         Client client = new Client();
         String query = "SELECT * FROM user WHERE login=?";

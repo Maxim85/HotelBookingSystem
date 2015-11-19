@@ -1,7 +1,7 @@
 package com.booking.dao;
 
 
-import com.booking.model.hotel.Admin;
+import com.booking.model.Admin;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -70,7 +70,7 @@ public class AdminDaoImpl implements AdminDao {
 
     public Admin find(String login) {
         if (login == null || login.equals("")) {
-            throw new IllegalArgumentException("Login shouldn't be empty");
+            throw new IllegalArgumentException("Enter correct login. Login shouldn't be empty");
         }
         String query = "SELECT * FROM user WHERE login=?";
         Admin admin = new Admin();

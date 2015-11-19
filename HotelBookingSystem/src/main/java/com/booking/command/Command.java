@@ -1,5 +1,4 @@
-package com.booking.controller;
-//package by.bsu.famcs.jspservlet.commands;
+package com.booking.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

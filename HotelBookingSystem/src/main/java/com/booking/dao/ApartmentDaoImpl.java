@@ -1,7 +1,8 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Apartment;
-import com.booking.model.hotel.Type;
+import com.booking.model.Apartment;
+import com.booking.model.Type;
+import com.mysql.jdbc.Statement;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -9,11 +10,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @author Maksym.
@@ -41,13 +40,20 @@ public class ApartmentDaoImpl implements ApartmentDao {
         String query = "INSERT INTO apartment(id, type, available, checkOutDate) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.createConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setLong(1, apartment.getId());
             statement.setString(2, apartment.getType().name());
             statement.setBoolean(3, apartment.isAvailable());
             statement.setDate(4, new java.sql.Date(apartment.getCheckOutDate().getTime()));
             statement.execute();
             logger.info("Method of add new apartment successfully completed. Id set: " + apartment.getId() + "\nApartment type set: " + apartment.getType().name() + "\nAvailable set: " + apartment.isAvailable() + "\nCheck out of date set: " + apartment.getCheckOutDate());
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    apartment.setId(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating apartment failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Exception in method add new apartment: ", e);
         }

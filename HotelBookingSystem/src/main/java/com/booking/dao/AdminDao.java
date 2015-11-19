@@ -1,10 +1,9 @@
 package com.booking.dao;
 
-import com.booking.model.hotel.Admin;
+import com.booking.model.Admin;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Maksym.

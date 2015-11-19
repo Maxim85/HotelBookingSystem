@@ -1,4 +1,4 @@
-package com.booking.model.hotel;
+package com.booking.model;
 
 /**
  * Created by ���� on 24.06.2015.
